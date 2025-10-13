@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Leave Management System</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="container header">
+      <h1 class="brand text-balance">Leave Management System</h1>
+      <nav id="nav" class="nav"></nav>
+    </header>
+
+    <main class="container">
+      <section id="auth-section" class="card">
+        <h2 class="h2">Sign In</h2>
+        <form id="login-form" class="form">
+          <label>
+            <span>Email</span>
+            <input id="email" type="email" required />
+          </label>
+          <label>
+            <span>Password</span>
+            <input id="password" type="password" required />
+          </label>
+          <button type="submit" class="btn primary">Login</button>
+          <p class="hint">Default admin will be seeded on server start.</p>
+        </form>
+        <details class="mt-4">
+          <summary>Create Employee Account</summary>
+          <form id="register-form" class="form mt-2">
+            <label>
+              <span>Name</span>
+              <input id="reg-name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input id="reg-email" type="email" required />
+            </label>
+            <label>
+              <span>Password</span>
+              <input id="reg-password" type="password" required />
+            </label>
+            <button type="submit" class="btn">Register</button>
+          </form>
+        </details>
+      </section>
+
+      <section id="employee-dashboard" class="hidden">
+        <div class="grid-2">
+          <div class="card">
+            <h2 class="h2">Request Leave</h2>
+            <form id="leave-form" class="form">
+              <label>
+                <span>Type</span>
+                <select id="type" required>
+                  <option value="casual">Casual</option>
+                  <option value="sick">Sick</option>
+                  <option value="personal">Personal</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <label>
+                <span>Start Date</span>
+                <input id="start-date" type="date" required />
+              </label>
+              <label>
+                <span>End Date</span>
+                <input id="end-date" type="date" required />
+              </label>
+              <label>
+                <span>Reason</span>
+                <textarea id="reason" rows="3" placeholder="Optional"></textarea>
+              </label>
+              <button class="btn primary" type="submit">Submit Request</button>
+            </form>
+          </div>
+          <div class="card">
+            <h2 class="h2">My Balances</h2>
+            <ul id="balances" class="list"></ul>
+          </div>
+        </div>
+
+        <div class="card mt-4">
+          <div class="flex between center">
+            <h2 class="h2">My Leave Requests</h2>
+            <div class="filters">
+              <select id="emp-filter-status">
+                <option value="">All statuses</option>
+                <option>pending</option>
+                <option>approved</option>
+                <option>rejected</option>
+                <option>cancelled</option>
+              </select>
+              <select id="emp-filter-type">
+                <option value="">All types</option>
+                <option>casual</option>
+                <option>sick</option>
+                <option>personal</option>
+                <option>other</option>
+              </select>
+              <button id="emp-refresh" class="btn">Refresh</button>
+            </div>
+          </div>
+          <table class="table" id="emp-requests-table">
+            <thead>
+              <tr>
+                <th>#</th><th>Type</th><th>Dates</th><th>Days</th><th>Status</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="card mt-4">
+          <div class="flex between center">
+            <h2 class="h2">Notifications</h2>
+            <button id="notif-refresh" class="btn">Refresh</button>
+          </div>
+          <ul id="notifications" class="list"></ul>
+        </div>
+      </section>
+
+      <section id="admin-dashboard" class="hidden">
+        <div class="card">
+          <div class="flex between center">
+            <h2 class="h2">Pending Requests</h2>
+            <div class="filters">
+              <select id="adm-filter-status">
+                <option value="pending">pending</option>
+                <option value="">all</option>
+                <option>approved</option>
+                <option>rejected</option>
+                <option>cancelled</option>
+              </select>
+              <select id="adm-filter-type">
+                <option value="">All types</option>
+                <option>casual</option>
+                <option>sick</option>
+                <option>personal</option>
+                <option>other</option>
+              </select>
+              <button id="adm-refresh" class="btn">Refresh</button>
+            </div>
+          </div>
+          <table class="table" id="adm-requests-table">
+            <thead>
+              <tr>
+                <th>#</th><th>User</th><th>Type</th><th>Dates</th><th>Days</th><th>Status</th><th>Decision</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container footer">
+      <small>© Leave Management System</small>
+    </footer>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
